@@ -28,7 +28,7 @@ for ticker in tickers:
 
     fundamentalsStatements = getTodayFundamentalsStatements(ticker, startDate, endDate, apiToken)
 
-    filename = ticker+'_statement.json'
+    filename = 'data/'+ticker+'_statement.json'
     with open(filename, 'w') as outfile:
         json.dump(fundamentalsStatements, outfile, indent=4)
 
