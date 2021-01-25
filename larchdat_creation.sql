@@ -46,19 +46,3 @@ create index recId_f on ticker_ohlc
 );
 
 
-
-do $$
-declare lm int = 0;
-declare datem date = '2020-01-15';
-
-begin
-for i in 1..10000 loop
-datem = datem + 1;
-INSERT INTO ticker_ohlc (ticker, date, open, close, low, high) 
-VALUES ('JNJ', datem, lm, 322.01, 112, 325.1);
-lm = lm + 1;
-end loop;
-end; $$
-
-delete from ticker_ohlc where record_id not in (select distinct on (ticker, date) record_id from ticker_ohlc);
-

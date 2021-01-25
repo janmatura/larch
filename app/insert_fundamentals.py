@@ -8,7 +8,11 @@ def insertFundamentals(ticker, startDate, endDate, apiToken, index = 0, fundamen
     if fundamentals == 0:
         fundamentals = getTodayFundamentalsStatements(ticker, startDate, endDate, apiToken)
         print('json', fundamentals)
+        if fundamentals == []:
+            print('Fundamentals - empty;')
+            return
 
+    print('Fundas not empty;')
     global jdate, jquarter, jroa, jpiotroskiFScore, jeps, jrevenue, jgrossProfit, jebt, jebitda, jtotalAssets, jsharesBasic, jdebtCurrent
     try:
         jdate = str(fundamentals[index]['date'])

@@ -1,13 +1,16 @@
 from get_todayPrices import getEndOfDay
 from get_fundamentals import getTodayFundamentals
 import pg8000
-
+import json
 
 def insertPrices(ticker, startDate, endDate, apiToken, index = 0, endOfDay = 0, fundamentals = 0):
 
     if (endOfDay or fundamentals) == 0:
         endOfDay = getEndOfDay(ticker, startDate, endDate, apiToken)
         fundamentals = getTodayFundamentals(ticker, startDate, endDate, apiToken)
+        if endOfDay == []:
+            print('Prices - empty;')
+            return
 
     date = str(endOfDay[index]['date'])
     open = endOfDay[index]['open']

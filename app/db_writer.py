@@ -1,11 +1,13 @@
 from insert_prices import insertPrices
-from insert_fundamentals import  insertFundamentals
+from insert_fundamentals import insertFundamentals
+from datetime import date, timedelta
 
 tickers = ('AAPL', 'BA', 'CAT', 'MSFT')
+today = (date.today() - timedelta(days=3)).strftime("%Y-%m-%d")
+print(today)
 
-startDate = '2020-12-23'
-endDate = '2020-12-23'
-#ticker = 'AAPL'
+startDate = today
+endDate = today
 apiToken ='03e7b05ae58a0f4a92b43326ca36a4ebfff91dfd'
 
 for ticker in tickers:

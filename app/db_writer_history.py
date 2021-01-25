@@ -23,7 +23,6 @@ for ticker in tickers:
         except Exception as e:
             print('no data - prices: ', e)
 
-
 for ticker in tickers:
 
     fundamentalsStatements = getTodayFundamentalsStatements(ticker, startDate, endDate, apiToken)
