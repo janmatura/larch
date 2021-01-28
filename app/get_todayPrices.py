@@ -1,4 +1,5 @@
 import requests
+import json
 
 startDate = '2020-12-21'
 endDate = '2020-12-22'
@@ -21,6 +22,9 @@ def getEndOfDay(ticker, startDate, endDate, apiToken):
     requestResponse = requests.get(endpoint, headers=headers)
 
     resPrices = requestResponse.json()
+
+    with open('data/Prices.json', 'w') as json_file:
+        json.dump(resPrices, json_file)
 
     return resPrices
 

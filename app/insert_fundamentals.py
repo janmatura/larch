@@ -9,7 +9,7 @@ def insertFundamentals(ticker, startDate, endDate, apiToken, index = 0, fundamen
         fundamentals = getTodayFundamentalsStatements(ticker, startDate, endDate, apiToken)
         print('json', fundamentals)
         if fundamentals == []:
-            print('Fundamentals - empty;')
+            print('Fundamentals statements- empty;')
             return
 
     print('Fundas not empty;')

@@ -12,6 +12,11 @@ def insertPrices(ticker, startDate, endDate, apiToken, index = 0, endOfDay = 0, 
             print('Prices - empty;')
             return
 
+        if fundamentals == []:
+            print('Fundamentals - empty;')
+            return
+
+
     date = str(endOfDay[index]['date'])
     open = endOfDay[index]['open']
     close = endOfDay[index]['close']
