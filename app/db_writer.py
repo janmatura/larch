@@ -2,9 +2,11 @@ from insert_prices import insertPrices
 from insert_fundamentals import insertFundamentals
 from datetime import date, timedelta
 
+
 tickers = ('AAPL', 'BA', 'CAT', 'MSFT')
 today = (date.today() - timedelta(days=3)).strftime("%Y-%m-%d")
-print(today)
+print('Good morning of ',today, '. Continue in being greatest!')
+
 
 startDate = today
 endDate = today
