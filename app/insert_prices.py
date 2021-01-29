@@ -31,7 +31,7 @@ def insertPrices(ticker, startDate, endDate, apiToken, index = 0, endOfDay = 0, 
     values = "'{ticker}', '{date}', {open}, {close}, {low}, {high}, {peRatio}, {pbRatio}"  \
         .format(ticker=ticker, date=date, open=open, close=close, low=low, high=high, peRatio=peRatio, pbRatio=pbRatio)
 
-    sql = "insert into ticker_ohlc({columns}) values({values});" .format(columns=columns, values=values)
+    sql = "insert into ticker_ohlc({columns}) values({values}) ON CONFLICT (ticker, date) DO NOTHING;" .format(columns=columns, values=values)
 
     con = pg8000.connect('jan', 'localhost', 'larchdata', 5432, '551177ac')
 

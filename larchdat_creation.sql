@@ -13,11 +13,14 @@ pbRatio		numeric(10,2) not null
 
 );
 
-create index recId_p on ticker_ohlc 
+create UNIQUE index unique_p_record on ticker_ohlc 
 (
 	ticker,
 	date 
 );
+
+ALTER TABLE ticker_ohlc ADD CONSTRAINT unique_p_record UNIQUE USING INDEX unique_p_record;
+
 
 CREATE TABLE ticker_funda (
 
@@ -39,10 +42,12 @@ debtCurrent		numeric(30,2) not null
 
 );
 
-create index recId_f on ticker_ohlc 
+CREATE unique index unique_f_record on ticker_ohlc 
 (
 	ticker,
 	date 
 );
+
+ALTER TABLE ticker_funda ADD CONSTRAINT unique_f_record UNIQUE USING INDEX unique_f_record;
 
 

@@ -48,7 +48,7 @@ def insertFundamentals(ticker, startDate, endDate, apiToken, index = 0, fundamen
                 debtCurrent=jdebtCurrent
                 )
 
-    sql = "insert into ticker_funda({columns}) values({values});" .format(columns=columns, values=values)
+    sql = "insert into ticker_funda({columns}) values({values}) ON CONFLICT (ticker, date) DO NOTHING;;" .format(columns=columns, values=values)
     print(sql)
 
     con = pg8000.connect('jan', 'localhost', 'larchdata', 5432, '551177ac')
