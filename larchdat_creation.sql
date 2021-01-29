@@ -42,7 +42,7 @@ debtCurrent		numeric(30,2) not null
 
 );
 
-CREATE unique index unique_f_record on ticker_ohlc 
+CREATE unique index unique_f_record on ticker_funda 
 (
 	ticker,
 	date 
