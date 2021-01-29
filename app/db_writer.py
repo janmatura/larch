@@ -5,7 +5,7 @@ from datetime import date, timedelta
 
 tickers = ('AAPL', 'BA', 'CAT', 'MSFT')
 today = (date.today() - timedelta(days=3)).strftime("%Y-%m-%d")
-print('Good morning of ',today, '. Continue in being greatest!')
+print('\n =====================================================\n Good morning of ',today, '. Continue in being greatest!\n')
 
 
 startDate = today
