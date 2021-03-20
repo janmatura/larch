@@ -7,8 +7,8 @@ import json
 
 tickers = ('AAPL', 'BA', 'CAT', 'MSFT')
 
-startDate = '2020-01-01'
-endDate = '2020-05-15'
+startDate = '2020-09-01'
+endDate = '2021-03-18'
 apiToken ='03e7b05ae58a0f4a92b43326ca36a4ebfff91dfd'
 
 for ticker in tickers:

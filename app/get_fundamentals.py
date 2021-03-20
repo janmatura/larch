@@ -30,9 +30,9 @@ def getTodayFundamentals(ticker, startDate, endDate, apiToken):
     resFundamentals = requestResponse.json()
 
 
-    filename = 'data/{ticker}Funda.json' .format(ticker=ticker)
-    with open(filename, 'w') as json_file:
-        json.dump(resFundamentals, json_file)
+  #  filename = 'data/{ticker}Funda.json' .format(ticker=ticker)
+   # with open(filename, 'w') as json_file:
+    #    json.dump(resFundamentals, json_file)
 
     return resFundamentals
 
