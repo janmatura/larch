@@ -28,8 +28,7 @@ def insertPrices(ticker, startDate, endDate, apiToken, index = 0, endOfDay = 0, 
     print(ticker, date)
 
     columns = 'ticker, date, open, close, low, high, peRatio, pbRatio'
-    values = "'{ticker}', '{date}', {open}, {close}, {low}, {high}, {peRatio}, {pbRatio}"  \
-        .format(ticker=ticker, date=date, open=open, close=close, low=low, high=high, peRatio=peRatio, pbRatio=pbRatio)
+    values = f"'{ticker}', '{date}', {open}, {close}, {low}, {high}, {peRatio}, {pbRatio}"
 
     sql = "insert into ticker_ohlc({columns}) values({values}) ON CONFLICT (ticker, date) DO NOTHING;" .format(columns=columns, values=values)
 

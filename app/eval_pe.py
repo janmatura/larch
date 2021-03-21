@@ -1,20 +1,32 @@
 import pg8000
 from datetime import date, timedelta
 
-def peDecline():
-    ticker = 'AAPL'
+def peChange(ticker):
     today = date.today()
-    evalDate = (today - timedelta(days=10)).strftime("%Y-%m-%d")
+    todayInsert = today.strftime("%Y-%m-%d")
+    evalDate = (today - timedelta(days=200)).strftime("%Y-%m-%d")
     sql = f"select peratio from ticker_ohlc where date >= '{evalDate}' and ticker = '{ticker}' order by date asc;"
     con = pg8000.connect('jan', 'localhost', 'larchdata', 5432, '551177ac')
     cursor = con.cursor()
     cursor.execute(sql)
     row = cursor.fetchall()
-
     peArray = []
     for i in row:
         peArray.append(float(i[0]))
-    print("P/E`s Array:", peArray)
 
+    startList = peArray[0:9]
+    endList = peArray[-10:-1]
+    startMean = sum(startList)/len(startList)
+    endMean = sum(endList)/len(endList)
 
-peDecline()
+    change = round((endMean - startMean)/(startMean/100), 2)
+    print(f'{ticker} p/e change: {change} % ;')
+
+    columns = 'ticker, date, pe_change_130_p'
+    values = f"'{ticker}', '{todayInsert}', {change}"
+
+    sql = f"insert into evaluation({columns}) values({values}) ON CONFLICT (ticker, date) DO NOTHING;"
+
+    con = pg8000.connect('jan', 'localhost', 'larchdata', 5432, '551177ac')
+    con.run(sql)
+    con.commit()
