@@ -14,7 +14,6 @@ UNIQUE (ticker, date)
 );
 
 
-
 CREATE TABLE ticker_funda (
 
 record_id   int GENERATED ALWAYS AS IDENTITY,
@@ -29,11 +28,11 @@ grossProfit		numeric(30,2) not null,
 ebt				numeric(30,2) not null,
 ebitda			numeric(30,2) not null,
 totalAssets		numeric(30,2) not null,
-sharesBasic		numeric(30,2) not null,
-debtCurrent		numeric(30,2) not null,
+sharesBasic		numeric(30,2) not NULL,
 
 UNIQUE (ticker, date)
 );
+
 
 CREATE TABLE evaluation (
 record_id	int GENERATED ALWAYS AS IDENTITY,

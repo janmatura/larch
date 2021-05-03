@@ -13,7 +13,7 @@ def insertFundamentals(ticker, startDate, endDate, apiToken, index = 0, fundamen
             return
 
     print('Fundas not empty;')
-    global jdate, jquarter, jroa, jpiotroskiFScore, jeps, jrevenue, jgrossProfit, jebt, jebitda, jtotalAssets, jsharesBasic, jdebtCurrent
+    global jdate, jquarter, jroa, jpiotroskiFScore, jeps, jrevenue, jgrossProfit, jebt, jebitda, jtotalAssets, jsharesBasic
     try:
         jdate = str(fundamentals[index]['date'])
         jquarter = fundamentals[index]['quarter']
@@ -26,13 +26,12 @@ def insertFundamentals(ticker, startDate, endDate, apiToken, index = 0, fundamen
         jebitda = parseFundamentalValue(fundamentals, index, 'incomeStatement', 'ebitda')
         jtotalAssets = parseFundamentalValue(fundamentals, index, 'balanceSheet', 'totalAssets')
         jsharesBasic = parseFundamentalValue(fundamentals, index, 'balanceSheet', 'sharesBasic')
-        jdebtCurrent = parseFundamentalValue(fundamentals, index, 'balanceSheet', 'debtCurrent')
 
     except Exception as e:
        print('no data - fundaInsert: ', e)
 
-    columns = 'ticker, quarter, date, roa, piotroskiFScore, eps, revenue, grossProfit, ebt, ebitda, totalAssets, sharesBasic, debtCurrent'
-    values = "'{ticker}', '{quarter}', '{date}', {roa}, {piotroskiFScore}, {eps}, {revenue}, {grossProfit}, {ebt}, {ebitda}, {totalAssets}, {sharesBasic}, {debtCurrent}"  \
+    columns = 'ticker, quarter, date, roa, piotroskiFScore, eps, revenue, grossProfit, ebt, ebitda, totalAssets, sharesBasic'
+    values = "'{ticker}', '{quarter}', '{date}', {roa}, {piotroskiFScore}, {eps}, {revenue}, {grossProfit}, {ebt}, {ebitda}, {totalAssets}, {sharesBasic}"  \
         .format(ticker=ticker,
                 quarter=jquarter,
                 date=jdate,
@@ -45,7 +44,6 @@ def insertFundamentals(ticker, startDate, endDate, apiToken, index = 0, fundamen
                 ebitda=jebitda,
                 totalAssets=jtotalAssets,
                 sharesBasic=jsharesBasic,
-                debtCurrent=jdebtCurrent
                 )
 
     sql = "insert into ticker_funda({columns}) values({values}) ON CONFLICT (ticker, date) DO NOTHING;;" .format(columns=columns, values=values)

@@ -6,8 +6,8 @@ from insert_fundamentals import insertFundamentals
 from tickers import tickers
 import json
 
-startDate = '2020-01-01'
-endDate = '2020-01-17'
+startDate = '2021-04-16'
+endDate = '2021-04-23'
 apiToken ='03e7b05ae58a0f4a92b43326ca36a4ebfff91dfd'
 
 for ticker in tickers:
