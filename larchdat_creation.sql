@@ -41,6 +41,6 @@ date		date,
 pe_change_130_p numeric(30,2) not null,
 
 UNIQUE (ticker, date)
-)
+);
 
 
