@@ -34,6 +34,8 @@ def insertPrices(ticker, startDate, endDate, apiToken, index = 0, endOfDay = 0, 
 
     con = pg8000.connect('jan', 'localhost', 'larchdata', 5432, '551177ac')
 
-    con.run(sql)
-    con.commit()
-
+    try:
+        con.run(sql)
+        con.commit()
+    except:
+        print(f'ERROR - Insert prices SQL error at ticker: {ticker}. date: {startDate}.')
