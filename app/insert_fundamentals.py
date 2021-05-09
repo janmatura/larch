@@ -7,12 +7,9 @@ def insertFundamentals(ticker, startDate, endDate, apiToken, index = 0, fundamen
 
     if fundamentals == 0:
         fundamentals = getTodayFundamentalsStatements(ticker, startDate, endDate, apiToken)
-        print('json', fundamentals)
         if fundamentals == []:
-            print('Fundamentals statements- empty;')
             return
 
-    print('Fundas not empty;')
     global jdate, jquarter, jroa, jpiotroskiFScore, jeps, jrevenue, jgrossProfit, jebt, jebitda, jtotalAssets, jsharesBasic
     try:
         jdate = str(fundamentals[index]['date'])
@@ -28,7 +25,7 @@ def insertFundamentals(ticker, startDate, endDate, apiToken, index = 0, fundamen
         jsharesBasic = parseFundamentalValue(fundamentals, index, 'balanceSheet', 'sharesBasic')
 
     except Exception as e:
-       print('no data - fundaInsert: ', e)
+       print(f'FundaInsert error on ticker: {ticker} ', e)
 
     columns = 'ticker, quarter, date, roa, piotroskiFScore, eps, revenue, grossProfit, ebt, ebitda, totalAssets, sharesBasic'
     values = "'{ticker}', '{quarter}', '{date}', {roa}, {piotroskiFScore}, {eps}, {revenue}, {grossProfit}, {ebt}, {ebitda}, {totalAssets}, {sharesBasic}"  \
@@ -47,7 +44,6 @@ def insertFundamentals(ticker, startDate, endDate, apiToken, index = 0, fundamen
                 )
 
     sql = "insert into ticker_funda({columns}) values({values}) ON CONFLICT (ticker, date) DO NOTHING;;" .format(columns=columns, values=values)
-    print(sql)
 
     con = pg8000.connect('jan', 'localhost', 'larchdata', 5432, '551177ac')
 

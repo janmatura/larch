@@ -6,7 +6,7 @@ def peChange(ticker):
     today = date.today()
     todayInsert = today.strftime("%Y-%m-%d")
     evalDate = (today - timedelta(days=130)).strftime("%Y-%m-%d")
-    print('evaldate',evalDate)
+    #print('evaldate',evalDate)
     sql = f"select peratio from ticker_ohlc where date >= '{evalDate}' and ticker = '{ticker}' order by date asc;"
     con = pg8000.connect('jan', 'localhost', 'larchdata', 5432, '551177ac')
     cursor = con.cursor()
@@ -17,14 +17,14 @@ def peChange(ticker):
     try:
         for i in row:
             peArray.append(float(i[0]))
-        print(f'{ticker} peArray:', peArray)
+        #print(f'{ticker} peArray:', peArray)
         startList = peArray[0:9]
         endList = peArray[-10:-1]
         startMean = sum(startList)/len(startList)
         endMean = sum(endList)/len(endList)
 
         change = round((endMean - startMean)/(startMean/100), 2)
-        print(f'{ticker} p/e change: {change} % ;')
+        #print(f'{ticker} p/e change: {change} % ;')
 
         columns = 'ticker, date, pe_change_130_p'
         values = f"'{ticker}', '{todayInsert}', {change}"

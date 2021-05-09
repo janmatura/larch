@@ -25,6 +25,7 @@ def insertPrices(ticker, startDate, endDate, apiToken, index = 0, endOfDay = 0, 
     peRatio = fundamentals[index]['peRatio']
     pbRatio = fundamentals[index]['pbRatio']
 
+
     print(ticker, date)
 
     columns = 'ticker, date, open, close, low, high, peRatio, pbRatio'
