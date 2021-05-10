@@ -9,11 +9,11 @@ def insertPrices(ticker, startDate, endDate, apiToken, index = 0, endOfDay = 0, 
         endOfDay = getEndOfDay(ticker, startDate, endDate, apiToken)
         fundamentals = getTodayFundamentals(ticker, startDate, endDate, apiToken)
         if endOfDay == []:
-            print('Prices - empty;')
+            print(f'Error - Prices empty on ticker {ticker};')
             return
 
         if fundamentals == []:
-            print('Fundamentals - empty;')
+            print(f'Error - Fundamentals empty on ticker {ticker};')
             return
 
 

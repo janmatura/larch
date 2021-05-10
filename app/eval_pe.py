@@ -35,4 +35,4 @@ def peChange(ticker):
         con.run(sql)
         con.commit()
     except:
-        print(f'Evaluation error on ticker {ticker}. Pe Array: {peArray} .')
+        print(f'Error - Evaluation on ticker {ticker}. Pe Array: {peArray} .')
