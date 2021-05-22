@@ -1,5 +1,6 @@
 import pg8000
 from datetime import date, timedelta
+from tickers import tickers
 
 def peChange(ticker):
 
@@ -34,5 +35,8 @@ def peChange(ticker):
         con = pg8000.connect('jan', 'localhost', 'larchdata', 5432, '551177ac')
         con.run(sql)
         con.commit()
-    except:
-        print(f'Error - Evaluation on ticker {ticker}. Pe Array: {peArray} .')
+    except Exception as e:
+        print(f'Error - Evaluation on ticker {ticker}; Exception: {e}; Pe Array: {peArray} ;')
+
+for i in tickers:
+    peChange(i)

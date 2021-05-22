@@ -1,6 +1,7 @@
 from insert_prices import insertPrices
 from insert_fundamentals import insertFundamentals
 from eval_pe import peChange
+from eval_pea import peAverage
 from datetime import date, timedelta
 from tickers import tickers
 
@@ -18,3 +19,4 @@ for ticker in tickers:
     insertPrices(ticker, startDate, endDate, apiToken)
     insertFundamentals(ticker, startDate, endDate, apiToken)
     peChange(ticker)
+    peAverage(ticker)
